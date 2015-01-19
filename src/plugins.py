@@ -42,13 +42,15 @@ class PluginsManager(object):
         plugins added manualy by user in his .vimrc file
         """
         with open(self.vimhome + '/configs/plugins.list', 'w+') as pluglist:
+            print('Start copy plugins')
             for plugin in self.plugins_list:
+                print('Plugin!')
                 if not self.check_if_plugin_in_config(plugin):
-                    pluglist.writeline("'{}'".format(plugin))
+                    pluglist.write("'{}'".format(plugin))
         print('Plugin config list updated...')
 
     def check_if_plugin_in_config(self, plugin):
-        with open(self.vimhome + 'configs/plugins.list', 'r') as plist:
+        with open(self.vimhome + '/configs/plugins.list', 'r') as plist:
             for plug in plist:
                 if plugin in plug:
                     return True
